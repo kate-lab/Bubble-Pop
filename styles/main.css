@@ -1,0 +1,90 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: olivedrab;
+  text-align: center;
+}
+
+main{
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#start-menu {
+  background-color: blueviolet;
+  height: 600px;
+  width: 800px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#select-wrapper {
+  display: flex;
+}
+
+.character-img {
+  background-color: orange;
+  width: 200px;
+  height: 200px;
+  border: solid 10px orangered;    
+  margin: 0 0 0 40px;
+}
+
+#choose-character {
+  margin: auto;
+}
+
+#name-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#name-wrapper input {
+  padding: 10px;
+}
+
+#name-wrapper button {
+  padding: 10px;
+  background-color: yellowgreen;
+  margin: 10px 0 0 0;
+}
+
+
+
+#game-player {
+  background-color: cadetblue;
+  display: none;
+  height: 600px;
+  width: 800px;
+}
+
+.game-wrapper {
+  display: flex;
+  margin-top: 16px;
+}
+
+.grid-wrapper {
+  width: 600px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cell {
+  width: 50px;
+  height: 50px;
+  margin: 3px;
+  background-color: thistle;
+  display: inline-block;
+}
+
+.aside {
+  width: 200px;
+}

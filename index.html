@@ -2,15 +2,67 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Project 1!</title>
+    <title>Goose Invaders</title>
     <link rel="stylesheet" href="styles/main.css">
     <script src="scripts/app.js" charset="utf-8"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+
   </head>
+
   <body>
-    <div class="grid-wrapper">
-      <div class="grid">
-        <!-- Cells to go here -->
+
+    <header>
+      <h1>Goose Invaders</h1>
+    </header>
+
+    <main>
+      <!-- beginning page! -->
+      <div id="start-menu">
+
+        <section id="select-wrapper">
+          <div class="character-img">picture here</div>
+          <div id="choose-character">
+            <div>Choose your character:</div>
+            <div>
+              <select name="Option 1" id="character-select"></select>
+            </div>
+          </div>
+        </section>
+
+        <section id="name-wrapper">
+          <input type="text" placeholder="Your name">
+          <button id="start-button">Start</button>
+        </section>
+
+        <section id="instructions">
+          <div class="instructions">instructions here</div>
+        </section>
+
       </div>
-    </div>
+      
+
+      <!-- to add when game starts -->
+      <div id="game-player">
+
+        <div class="game-wrapper">
+          <section class="grid-wrapper">
+            <div class="grid">
+              <!-- Cells to go here -->
+            </div>
+          </section>
+  
+          <div class="aside">
+            <div>instructions here</div>
+            <div>score goes here</div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    
+
   </body>
 </html>
