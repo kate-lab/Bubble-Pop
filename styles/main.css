@@ -96,3 +96,7 @@ main{
 .enemy {
   background-image: url('../assets/images/enemies/bubble.png');
 }
+
+.charBullet {
+  background-image: url('../assets/images/char-bullets/1.png');
+}
