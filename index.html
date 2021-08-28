@@ -7,7 +7,7 @@
     <script src="scripts/app.js" charset="utf-8"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto&family=Urbanist:wght@100;200;300&display=swap" rel="stylesheet">
 
   </head>
 
@@ -21,24 +21,31 @@
       <!-- beginning page! -->
       <div id="start-menu">
 
-        <section id="select-wrapper">
-          <div class="character-img">picture here</div>
-          <div id="choose-character">
-            <div>Choose your character:</div>
-            <div>
-              <select name="Option 1" id="character-select"></select>
+        <div id="start-menu-container">
+
+          <div class="character-img"></div>
+
+          <section id="form-wrapper">
+            <div class="form-field" id="choose-character">
+              <label for="characterID">Choose your character</label>
+              <select name="characterID" id="character-select">
+                <option value="" disabled selected>Character name</option>
+                <option value="Triangolo">Triangolo</option>
+                <option value="Circolo">Circolo</option>
+                <option value="Quadro">Quadro</option>
+              </select>
             </div>
-          </div>
-        </section>
+            
 
-        <section id="name-wrapper">
-          <input type="text" placeholder="Your name">
-          <button id="start-button">Start</button>
-        </section>
-
-        <section id="instructions">
-          <div class="instructions">instructions here</div>
-        </section>
+            <div class="form-field" id="name-wrapper">
+              <label for="userID">Enter your name</label>
+              <input type="text" placeholder="Your name">
+              <button id="start-button">Start</button>
+            </div>
+          </section>
+  
+          
+        </div>
 
       </div>
       
@@ -47,17 +54,29 @@
       <div id="game-player">
 
         <div class="game-wrapper">
-          <section class="grid-wrapper">
-            <div class="grid">
+          <section class="grid">
               <!-- Cells to go here -->
-            </div>
           </section>
   
-          <div class="aside">
-            <div>instructions here</div>
-            <div>score goes here</div>
-          </div>
-          
+          <section class="aside">
+            <div class="score-container">score goes here</div>
+            <div class="instructions-container">
+              <p>How to play:</p>
+              <div id='left-right-container'>
+                <div class='instruction-button'>  
+                  move left<br>
+                  <img src="assets/images/outline_arrow_back_black_24dp.png" alt="left arrow">
+                </div>
+                <div class='instruction-button'>
+                  move right<br>
+                  <img src="assets/images/outline_arrow_forward_black_24dp.png" alt="right arrow">
+                </div>
+              </div>
+              <div class='instruction-button' id='space-button'>space bar = pop</div>
+            </div>
+            
+          </section>
+
           <div id="start-count"></div>
           
         </div>

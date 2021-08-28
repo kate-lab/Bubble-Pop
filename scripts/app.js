@@ -23,6 +23,9 @@ function init() {
 
   //character variables
   const charClassName = 'character'
+  const triangleClassName = 'triangle'
+  const circleClassName = 'circle'
+  const squareClassName = 'square'
   const charStartingPosition = (width * width) - parseFloat(width / 2)
   let charCurrentPosition = charStartingPosition
 
@@ -40,7 +43,6 @@ function init() {
     gamePlayer.style.display = 'initial'
     for (let i = 0; i < cellCount; i++){
       const cell = document.createElement('div')
-      cell.innerText = i //remove this at end to make cells have no number
       cell.setAttribute('class','cell')
       grid.appendChild(cell)
       cells.push(cell)
@@ -130,6 +132,9 @@ function init() {
   function removeEnemy(position){
     cells[position].classList.remove(enemyClassName)
   }
+
+
+  // USER INPUT - CHARACTER CHOICE
 
 
 

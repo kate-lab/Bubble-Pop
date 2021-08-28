@@ -2,37 +2,81 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: olivedrab;
+  background-color: whitesmoke;
   text-align: center;
+  margin: 0;
+  font-family:'helvetica', arial, sans-serif;
+  font-size: 18px;
 }
 
-main{
+main {
   width: 800px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-#start-menu {
-  background-color: blueviolet;
-  height: 600px;
-  width: 800px;
-  padding: 10px;
+header {
+  height: 100px;
+  width: 400px;
+  margin: 8px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url('../assets/images/bubble-header.png');
+}
+
+h1 {
+  font-family: 'Urbanist', arial, sans-serif;
+  font-weight: 100;
+  font-size: 50px;
+  color: white;
+}
+
+#start-menu {
+  background-color: #c6b5ff;
+  border-radius: 30px;
+  height: 600px;
+  width: 820px;
+}
+
+#start-menu-container {
+  margin: 60px auto;
+  height: 300px;
+  width: 600px;
+  display: flex;
   justify-content: space-around;
 }
 
-#select-wrapper {
+#form-wrapper {
   display: flex;
+  flex-direction: column;
+  width: 320px;
+}
+
+#choose-character {
+  display: flex;
+  flex-direction: column;
+}
+
+#choose-character select {
+  font-size: 20px;
+  font-family: 'Urbanist', arial, sans-serif;
+  text-align: center;
+  width: 200px;
+  padding: 10px;
+  margin: 10px auto;
+  border-radius: 6px;
+  border: gray;
 }
 
 .character-img {
-  background-color: orange;
+  background-color: #E460B7;
   width: 200px;
   height: 200px;
-  border: solid 10px orangered;    
-  margin: 0 0 0 40px;
+  border-radius: 100px;
+  box-shadow: 3px 3px 3px rgb(159, 159, 159);
+  margin: auto;
 }
 
 #choose-character {
@@ -47,64 +91,137 @@ main{
 }
 
 #name-wrapper input {
+  font-size: 20px;
+  font-family: 'Urbanist', arial, sans-serif;
+  text-align: center;
+  width: 180px;
   padding: 10px;
+  border-radius: 6px;
+  border: gray;
+  margin: 10px auto;
 }
 
-#name-wrapper button {
+#start-button {
   padding: 10px;
-  background-color: yellowgreen;
+  background-color: #96D487;
+  border: none;
+  width: 200px;
+  border-radius: 6px;
+  box-shadow:  3px 3px 3px rgb(159, 159, 159);
   margin: 10px 0 0 0;
+  font-size: 20px;
+  font-family: 'Urbanist', Arial, sans-serif;
+  font-weight: 200;
 }
 
+#name-wrapper button:active {
+  box-shadow: none;
+}
+
+.instructions-container {
+  margin: 10px auto;
+  width: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#left-right-container {
+  width: space-around;
+  display: flex;
+  justify-content: space-between;
+}
+
+.instruction-button {
+  padding: 7px 10px;
+  border: none;
+  border-radius: 6px;
+  background-color: whitesmoke;
+  box-shadow:  3px 3px 3px rgb(159, 159, 159);
+  margin: 10px 0 0 0;
+  font-size: 16px;
+}
+
+#space-button {
+  height: 30px;
+  vertical-align: middle;
+}
 
 
 #game-player {
-  background-color: cadetblue;
+  background-color: #c6b5ff;;
   display: none;
   height: 600px;
-  width: 800px;
+  width: 820px;
+  border-radius: 30px;
 }
 
 .game-wrapper {
   display: flex;
-  margin-top: 16px;
+  justify-content: space-between;
+  margin: 30px;
 }
 
-.grid-wrapper {
-  width: 600px;
-  margin: auto;
+.grid {
+  width: 540px;
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  background-color:#dacfff;
+  border-radius: 10px;
 }
 
 .cell {
   width: 50px;
   height: 50px;
-  margin: 3px;
-  background-color: rgb(45, 99, 111);
+  margin: 2px;
   display: inline-block;
 }
 
 .aside {
-  width: 200px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
+
+.score-container {
+  background-color: #FF95DB;
+  border-radius: 10px;
+  height: 300px;
+}
+
 
 .character {
   background-image: url('../assets/images/characters/triangle.png');
 }
+
+.triangle {
+  background-image: url('../assets/images/characters/triangle.png');
+}
+
+.circle {
+  background-image: url('../assets/images/characters/circle.png');
+}
+
+.square {
+  background-image: url('../assets/images/characters/square.png');
+}
+
 
 .enemy {
   background-image: url('../assets/images/enemies/bubble.png');
 }
 
 .charBullet {
-  background-image: url('../assets/images/char-bullets/1.png');
+  background-image: url('../assets/images/char-bullets/bullet.png');
 }
 
 #start-count {
-  color: yellow;
+  color: rgb(255, 255, 0);
+  font-family: 'Urbanist', arial, sans-serif;
   font-size: 200px;
-  width: 600px;
+  width: 565px;
   position: absolute;
   text-align: center;
   margin-top: 130px;
