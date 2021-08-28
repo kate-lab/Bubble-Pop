@@ -5,6 +5,8 @@ function init() {
   const grid = document.querySelector('.grid')
   const startMenu = document.querySelector('#start-menu')
   const startButton = document.querySelector('#start-button')
+  const startCounter = document.querySelector('#start-count')
+
 
   // grid variables
   const width = 10
@@ -17,6 +19,8 @@ function init() {
   const enemyStartingPosition = 0
   let enemyCurrentPosition = enemyStartingPosition
 
+  //enemy bullet variables
+
   //character variables
   const charClassName = 'character'
   const charStartingPosition = (width * width) - parseFloat(width / 2)
@@ -25,7 +29,10 @@ function init() {
   //character bullet variables
   const charBulletClassName = 'charBullet'
 
+
   //execution
+
+  //LAYOUT SET UP
 
   //function to create grid
   function createGrid(){
@@ -41,12 +48,27 @@ function init() {
     //calling function to add character on grid
     addCharacter(charStartingPosition)
     
-    // need to add enemies here - or should I wait for initial keypress?
-    //calling function to add enemy on grid
-    addEnemy(enemyStartingPosition)
+    //calling function to add enemy on grid after timeout delay
+    setTimeout(()=>{
+      addEnemy(enemyStartingPosition)
+    }, 4000)
+
+    //start countdown to gameplay
+    const startCount = startCounter.innerHTML = 3
+    setInterval(()=>{
+      if (startCounter.innerHTML > 1){
+        startCounter.innerHTML--
+      } else {
+        startCounter.innerHTML = 'pop!'
+        setTimeout(()=>{
+          startCounter.style.display = 'none'
+          clearInterval(startCount)
+        }, 1000)
+      }
+    }, 1000)
   }
 
-
+  //CHARACTER
 
 
   //function to add character to cell
@@ -76,36 +98,29 @@ function init() {
     // function to add bullet in this place
     addCharBullet(charBulletStartingPosition)
 
-
-    //function to begin automatic movement of bullet
-    const moveCharBullet = setInterval(()=>{
-
-      if  (charBulletCurrentPosition < 0){ //if bullet goes past grid, remove and clear interval
+    //function to begin automatic movement of bullet & define outcomes if bullet hits enemy or bullet goes past grid
+    const moveBullet = setInterval(()=>{
+      if (charBulletCurrentPosition === charCurrentPosition - (cellCount - width)){ //if bullet gets to end of grid, remove and clear interval
+        removeEnemy(charBulletCurrentPosition)
         removeCharBullet(charBulletCurrentPosition)
-        clearInterval(moveCharBullet) 
+        clearInterval(moveBullet)
       } else if (charBulletCurrentPosition !== enemyCurrentPosition) { //if the bullet is not in the same position the enemy, move upwards
         removeCharBullet(charBulletCurrentPosition)
         charBulletCurrentPosition -= 10
         addCharBullet(charBulletCurrentPosition)
-      }
-    }, 100)
-  
-    // if bullet and enemy are in same position, remove both!
-    function boomChecker(charBulletCurrentPosition){
-      if (charBulletCurrentPosition === enemyCurrentPosition){
+      } else if (charBulletCurrentPosition === enemyCurrentPosition) {  // if bullet and enemy are in same position, remove both!
         removeEnemy(enemyCurrentPosition)
         removeCharBullet(charBulletCurrentPosition)
-      } else {
-        moveCharBullet
-      }
-    }
-
-    boomChecker()
-
-
+        clearInterval(moveBullet)
+      } // do i need to set a new else statement for when there are no enemies left?
+    }, 100)
   }
 
 
+
+  
+
+  //ENEMIES
 
   //add enemy
   function addEnemy(cellPosition){
@@ -117,6 +132,8 @@ function init() {
   }
 
 
+
+  // USER INPUT - GAMEPLAY
 
   //user key input function - move character left right and shoot
   function handleKeyDown (event){
@@ -140,7 +157,7 @@ function init() {
   }
 
   
-  
+  //EVENT LISTENERS
 
 
   //creates grid and adds character

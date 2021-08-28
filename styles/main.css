@@ -100,3 +100,13 @@ main{
 .charBullet {
   background-image: url('../assets/images/char-bullets/1.png');
 }
+
+#start-count {
+  color: yellow;
+  font-size: 200px;
+  width: 600px;
+  position: absolute;
+  text-align: center;
+  margin-top: 130px;
+  z-index: 10;
+}
