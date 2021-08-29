@@ -5,7 +5,7 @@ body {
   background-color: whitesmoke;
   text-align: center;
   margin: 0;
-  font-family:'helvetica', arial, sans-serif;
+  font-family: 'Urbanist', arial, sans-serif;
   font-size: 18px;
 }
 
@@ -70,13 +70,21 @@ h1 {
   border: gray;
 }
 
-.character-img {
+#character-img-holder {
   background-color: #E460B7;
   width: 200px;
   height: 200px;
   border-radius: 100px;
   box-shadow: 3px 3px 3px rgb(159, 159, 159);
   margin: auto;
+}
+
+#character-img {
+  margin: 50px;
+}
+
+#character-img img {
+  box-shadow: 3px 3px 3px rgb(159, 159, 159);
 }
 
 #choose-character {
@@ -111,7 +119,7 @@ h1 {
   margin: 10px 0 0 0;
   font-size: 20px;
   font-family: 'Urbanist', Arial, sans-serif;
-  font-weight: 200;
+  font-weight: 300;
 }
 
 #name-wrapper button:active {
@@ -192,20 +200,19 @@ h1 {
 }
 
 
-.character {
-  background-image: url('../assets/images/characters/triangle.png');
-}
-
 .triangle {
   background-image: url('../assets/images/characters/triangle.png');
+  background-size: cover;
 }
 
 .circle {
   background-image: url('../assets/images/characters/circle.png');
+  background-size: cover;
 }
 
 .square {
   background-image: url('../assets/images/characters/square.png');
+  background-size: cover;
 }
 
 

@@ -21,30 +21,36 @@
       <!-- beginning page! -->
       <div id="start-menu">
 
-        <div id="start-menu-container">
+        <div id="start-menu-container" class="">
 
-          <div class="character-img"></div>
+          <div id="character-img-holder">
+            <img id="character-img">
+          </div>
 
-          <section id="form-wrapper">
+          <section id="form-wrapper" action=>
             <div class="form-field" id="choose-character">
               <label for="characterID">Choose your character</label>
-              <select name="characterID" id="character-select">
+              <select id="character-select" required>
                 <option value="" disabled selected>Character name</option>
-                <option value="Triangolo">Triangolo</option>
-                <option value="Circolo">Circolo</option>
-                <option value="Quadro">Quadro</option>
+                <option value="triangle">Triangolo</option>
+                <option value="circle">Circolo</option>
+                <option value="square">Quadro</option>
               </select>
             </div>
             
 
             <div class="form-field" id="name-wrapper">
               <label for="userID">Enter your name</label>
-              <input type="text" placeholder="Your name">
+              <input type="text" maxlength="10" placeholder="Your name">
               <button id="start-button">Start</button>
             </div>
           </section>
   
           
+        </div>
+        <div class="top-scores">
+          Top Scores
+          <!-- user input name and user score at end of game -->
         </div>
 
       </div>
@@ -61,15 +67,15 @@
           <section class="aside">
             <div class="score-container">score goes here</div>
             <div class="instructions-container">
-              <p>How to play:</p>
+              <p>Controls:</p>
               <div id='left-right-container'>
-                <div class='instruction-button'>  
+                <div class='instruction-button' id='left-button'>  
                   move left<br>
-                  <img src="assets/images/outline_arrow_back_black_24dp.png" alt="left arrow">
+                  <img src="assets/images/outline_arrow_back_black_24dp.png" alt="left arrow" id='left-arrow'>
                 </div>
-                <div class='instruction-button'>
+                <div class='instruction-button' id='right-button'>
                   move right<br>
-                  <img src="assets/images/outline_arrow_forward_black_24dp.png" alt="right arrow">
+                  <img src="assets/images/outline_arrow_forward_black_24dp.png" alt="right arrow" id='right-arrow'>
                 </div>
               </div>
               <div class='instruction-button' id='space-button'>space bar = pop</div>
