@@ -7,7 +7,7 @@
     <script src="scripts/app.js" charset="utf-8"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto&family=Urbanist:wght@100;200;300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 
   </head>
 
@@ -23,36 +23,42 @@
 
         <div id="start-menu-container" class="">
 
-          <section id="character-wrapper">
-            <div id="character-img-holder">
-              <img id="character-img">
-            </div>
+          
+          <div id="character-img-holder">
+            <img id="character-img">
+          </div>
   
-            
-        
+          
+          <form>
             <div class="form-field" id="choose-character">
-              <label for="characterID">Choose your character</label>
               <select id="character-select" required>
-                <option value="" disabled selected>Character name</option>
+                <option value="" disabled selected>Choose a character</option>
                 <option value="triangle">Triangolo</option>
                 <option value="circle">Circolo</option>
                 <option value="square">Quadro</option>
               </select>
             </div>
-          </section>
             
-
-          <div class="form-field" id="name-wrapper">
-            <label for="userID">Enter your name</label>
-            <input type="text" maxlength="10" placeholder="Your name">
-            <button id="start-button">Start</button>
-          </div>
+              
+  
+            <div class="form-field" id="name-wrapper">
+              <input type="text" maxlength="10" placeholder="Your name">
+              <button id="start-button">Start Game</button>
+            </div>
+          </form>
           
   
           
         </div>
         <div class="top-scores">
-          Star Player
+          <img class="small-bubble" src='assets/images/enemies/bubble.png'>
+          <img class="large-bubble" src='assets/images/enemies/bubble.png'>
+          <div id='star-wrapper'>
+            <p>Star Player</p>
+            <p><span class='topusername'>Player Name</span> with <span class='topscore'>000</span> points</p>
+          </div>
+          <img class="large-bubble" src='assets/images/enemies/bubble.png'>
+          <img class="small-bubble" src='assets/images/enemies/bubble.png'>
           <!-- user input name and user score at end of game -->
         </div>
 
@@ -63,14 +69,18 @@
       <div id="game-player">
 
         <div class="game-wrapper">
-          <section class="grid">
-              <!-- Cells to go here -->
-          </section>
+          <div class='grid-wrapper'>
+            <section class="grid">
+                <!-- Cells to go here -->
+            </section>
+          </div>
   
           <section class="aside">
-            <div class="score-container">score goes here</div>
+            <div class="score-container">
+              <p>score goes here</p>
+              <p>number of lives</>
+            </div>
             <div class="instructions-container">
-              <p>Controls:</p>
               <div id='left-right-container'>
                 <div class='instruction-button' id='left-button'>  
                   move left<br>

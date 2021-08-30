@@ -2,10 +2,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: whitesmoke;
+  background-color: white;
   text-align: center;
   margin: 0;
-  font-family: 'Urbanist', arial, sans-serif;
+  font-family: 'Work Sans', arial, sans-serif;
   font-size: 18px;
 }
 
@@ -24,6 +24,7 @@ header {
   align-items: center;
   justify-content: center;
   background-image: url('../assets/images/bubble-header.png');
+  background-repeat: no-repeat;
 }
 
 h1 {
@@ -42,35 +43,26 @@ h1 {
   padding: 20px auto;
   height: 400px;
   width: 750px;
-  display: flex;
-  justify-content: space-around;
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 30px;
   box-shadow:  3px 3px 3px rgba(109, 109, 109, 0.3);
-}
-
-#character-wrapper {
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  justify-content: center;
-  padding: 25px;
 }
 
-#choose-character {
-  display: flex;
-  flex-direction: column;
-}
-
-#choose-character select {
-  font-size: 20px;
-  font-family: 'Urbanist', arial, sans-serif;
+#character-select {
+  font-size: 18px;
   text-align: center;
-  width: 200px;
+  width: 240px;
   padding: 10px;
   margin: 10px auto;
   border-radius: 6px;
   border: gray;
+}
+
+#character-select option {
+  text-align: center;
 }
 
 #character-img-holder {
@@ -79,15 +71,10 @@ h1 {
   height: 200px;
   border-radius: 100px;
   box-shadow:  3px 3px 3px rgba(109, 109, 109, 0.3);
-  margin: 20px 0 7px 0;
 }
 
 #character-img {
   margin: 50px;
-}
-
-#choose-character {
-  margin: auto;
 }
 
 #name-wrapper {
@@ -98,10 +85,9 @@ h1 {
 }
 
 #name-wrapper input {
-  font-size: 20px;
-  font-family: 'Urbanist', arial, sans-serif;
+  font-size: 18px;
   text-align: center;
-  width: 180px;
+  width: 220px;
   padding: 10px;
   border-radius: 6px;
   border: gray;
@@ -113,13 +99,11 @@ h1 {
   background-color: #ff00d9;
   color: white;
   border: none;
-  width: 200px;
+  width: 240px;
   border-radius: 6px;
   box-shadow:  3px 3px 5px rgba(0, 0, 0, 0.6);
-  margin: 10px 0 0 0;
+  margin: 10px auto;
   font-size: 20px;
-  font-family: 'Urbanist', Arial, sans-serif;
-  font-weight: 300;
 }
 
 #name-wrapper button:active {
@@ -128,11 +112,30 @@ h1 {
 
 .top-scores {
   background-color: #564fd8e2;
+  color: whitesmoke;
   height: 100px;
   width: 740px;
   border-radius: 30px;
   margin: 0 auto;
   box-shadow:  3px 3px 3px rgba(109, 109, 109, 0.3);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.topusername, .topscore {
+  color: #fff782;
+  font-weight: 500;
+}
+
+.large-bubble {
+  width: 70px;
+  height: 70px;
+}
+
+.small-bubble {
+  width: 50px;
+  height: 50px;
 }
 
 .instructions-container {
@@ -150,7 +153,7 @@ h1 {
 }
 
 .instruction-button {
-  padding: 7px 10px;
+  padding: 6px;
   border: none;
   border-radius: 6px;
   background-color: whitesmoke;
@@ -202,11 +205,11 @@ h1 {
   justify-content: space-between;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 10px;
+  width: 200px;
   padding: 12px;
 }
 
 .score-container {
-  
   height: 300px;
 }
 
@@ -237,11 +240,93 @@ h1 {
 
 #start-count {
   color: #fff782;
-  font-family: 'Urbanist', arial, sans-serif;
   font-size: 200px;
   width: 565px;
   position: absolute;
   text-align: center;
   margin-top: 130px;
   z-index: 10;
+}
+
+/* responsive stuff */
+
+@media screen and (max-width: 600px) {
+  body, main {
+    width: 100%;
+    min-width: 320px;
+    max-width: 600px;
+  }
+  /* front page */
+  header {
+    margin: 8px auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 95%;
+  }
+  #start-menu {
+    max-width: 560px;
+    width: 95%;
+    min-width: 320px;
+    height: auto;
+  }
+  #start-menu-container {
+    flex-direction: column;
+    max-width: 530px;
+    min-width: 300px;
+    width: 95%;
+    height: 460px;
+    margin: 10px auto 0 auto;
+  }
+  .top-scores {
+    max-width: 530px;
+    min-width: 300px;
+    width: 95%;
+    height: auto;
+    margin: 10px auto;
+  }
+  .large-bubble {
+    display: none;
+  }
+
+
+  /* game page */
+  #game-player {
+    max-width: 560px;
+    width: 97%;
+    min-width: 430px;
+    height: auto;
+    border-radius: 10px;
+  }
+  .game-wrapper {
+    flex-direction: column;
+    align-items: center;
+    max-width: 530px;
+    min-width: 420px;
+    margin: 15px 0 10px 0;
+  }
+  .grid {
+    width: 420px;
+    border-radius: 0;
+  }
+  .cell {
+    width: 40px;
+    height: 40px;
+    margin: 1px;
+  }
+  .aside{
+    width: 394px;
+    margin: 5px 0;
+    flex-direction: row;
+  }
+  .score-container {
+    height: 30%;
+  }
+  .instructions-container {
+    margin: 5px;
+  }
+  #left-right-container div {
+    margin: 0;
+  }
+
 }
