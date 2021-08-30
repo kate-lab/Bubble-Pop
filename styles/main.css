@@ -27,31 +27,34 @@ header {
 }
 
 h1 {
-  font-family: 'Urbanist', arial, sans-serif;
-  font-weight: 100;
-  font-size: 50px;
-  color: white;
+  display: none;
 }
 
 #start-menu {
-  background-color: #c6b5ff;
+  background-image: url('../assets/images/background.png');
   border-radius: 30px;
-  height: 600px;
+  height: 580px;
   width: 820px;
 }
 
 #start-menu-container {
-  margin: 60px auto;
-  height: 300px;
-  width: 600px;
+  margin: 30px auto 20px auto;
+  padding: 20px auto;
+  height: 400px;
+  width: 750px;
   display: flex;
   justify-content: space-around;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 30px;
+  box-shadow:  3px 3px 3px rgba(109, 109, 109, 0.3);
 }
 
-#form-wrapper {
+#character-wrapper {
   display: flex;
   flex-direction: column;
-  width: 320px;
+  align-items: center;
+  justify-content: center;
+  padding: 25px;
 }
 
 #choose-character {
@@ -71,20 +74,16 @@ h1 {
 }
 
 #character-img-holder {
-  background-color: #E460B7;
+  background-color: #564fd8e0;
   width: 200px;
   height: 200px;
   border-radius: 100px;
-  box-shadow: 3px 3px 3px rgb(159, 159, 159);
-  margin: auto;
+  box-shadow:  3px 3px 3px rgba(109, 109, 109, 0.3);
+  margin: 20px 0 7px 0;
 }
 
 #character-img {
   margin: 50px;
-}
-
-#character-img img {
-  box-shadow: 3px 3px 3px rgb(159, 159, 159);
 }
 
 #choose-character {
@@ -111,11 +110,12 @@ h1 {
 
 #start-button {
   padding: 10px;
-  background-color: #96D487;
+  background-color: #ff00d9;
+  color: white;
   border: none;
   width: 200px;
   border-radius: 6px;
-  box-shadow:  3px 3px 3px rgb(159, 159, 159);
+  box-shadow:  3px 3px 5px rgba(0, 0, 0, 0.6);
   margin: 10px 0 0 0;
   font-size: 20px;
   font-family: 'Urbanist', Arial, sans-serif;
@@ -124,6 +124,15 @@ h1 {
 
 #name-wrapper button:active {
   box-shadow: none;
+}
+
+.top-scores {
+  background-color: #564fd8e2;
+  height: 100px;
+  width: 740px;
+  border-radius: 30px;
+  margin: 0 auto;
+  box-shadow:  3px 3px 3px rgba(109, 109, 109, 0.3);
 }
 
 .instructions-container {
@@ -157,9 +166,10 @@ h1 {
 
 
 #game-player {
-  background-color: #c6b5ff;;
+  background-color: #c6b5ff;
+  background-image: url('../assets/images/background.png');
   display: none;
-  height: 600px;
+  height: 580px;
   width: 820px;
   border-radius: 30px;
 }
@@ -167,7 +177,7 @@ h1 {
 .game-wrapper {
   display: flex;
   justify-content: space-between;
-  margin: 30px;
+  margin: 20px;
 }
 
 .grid {
@@ -175,7 +185,7 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  background-color:#dacfff;
+  background-color:#564fd8e2;
   border-radius: 10px;
 }
 
@@ -187,15 +197,16 @@ h1 {
 }
 
 .aside {
-  margin-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  padding: 12px;
 }
 
 .score-container {
-  background-color: #FF95DB;
-  border-radius: 10px;
+  
   height: 300px;
 }
 
@@ -225,7 +236,7 @@ h1 {
 }
 
 #start-count {
-  color: rgb(255, 255, 0);
+  color: #fff782;
   font-family: 'Urbanist', arial, sans-serif;
   font-size: 200px;
   width: 565px;

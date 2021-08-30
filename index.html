@@ -23,11 +23,13 @@
 
         <div id="start-menu-container" class="">
 
-          <div id="character-img-holder">
-            <img id="character-img">
-          </div>
-
-          <section id="form-wrapper" action=>
+          <section id="character-wrapper">
+            <div id="character-img-holder">
+              <img id="character-img">
+            </div>
+  
+            
+        
             <div class="form-field" id="choose-character">
               <label for="characterID">Choose your character</label>
               <select id="character-select" required>
@@ -37,19 +39,20 @@
                 <option value="square">Quadro</option>
               </select>
             </div>
+          </section>
             
 
-            <div class="form-field" id="name-wrapper">
-              <label for="userID">Enter your name</label>
-              <input type="text" maxlength="10" placeholder="Your name">
-              <button id="start-button">Start</button>
-            </div>
-          </section>
+          <div class="form-field" id="name-wrapper">
+            <label for="userID">Enter your name</label>
+            <input type="text" maxlength="10" placeholder="Your name">
+            <button id="start-button">Start</button>
+          </div>
+          
   
           
         </div>
         <div class="top-scores">
-          Top Scores
+          Star Player
           <!-- user input name and user score at end of game -->
         </div>
 
