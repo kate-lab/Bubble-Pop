@@ -31,7 +31,7 @@
           
           <form>
             <div class="form-field" id="choose-character">
-              <select id="character-select" required>
+              <select id="character-select">
                 <option value="" disabled selected>Choose a character</option>
                 <option value="triangle">Triangolo</option>
                 <option value="circle">Circolo</option>
@@ -69,16 +69,15 @@
       <div id="game-player">
 
         <div class="game-wrapper">
-          <div class='grid-wrapper'>
-            <section class="grid">
-                <!-- Cells to go here -->
-            </section>
-          </div>
+          <section class="grid">
+          <!-- Cells to go here -->
+          </section>
+        
   
           <section class="aside">
             <div class="score-container">
               <p>score goes here</p>
-              <p>number of lives</>
+              <p>number of lives</p>
             </div>
             <div class="instructions-container">
               <div id='left-right-container'>
@@ -93,14 +92,13 @@
               </div>
               <div class='instruction-button' id='space-button'>space bar = pop</div>
             </div>
-            
+              
           </section>
 
           <div id="start-count"></div>
           
+        
         </div>
-      
-      
       </div>
     </main>
 

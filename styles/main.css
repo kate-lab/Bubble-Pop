@@ -61,10 +61,6 @@ h1 {
   border: gray;
 }
 
-#character-select option {
-  text-align: center;
-}
-
 #character-img-holder {
   background-color: #564fd8e0;
   width: 200px;
@@ -250,12 +246,24 @@ h1 {
 
 /* responsive stuff */
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 812px) {
   body, main {
-    width: 100%;
+    width: 97%;
     min-width: 320px;
-    max-width: 600px;
   }
+  .instruction-button, #character-select, #name-wrapper input, #start-button {
+    font-size: 22px;
+  }
+  #character-select, #start-button {
+    width: 320px;
+  }
+  #character-select{
+    margin-top: 20px;
+  }
+  #name-wrapper input {
+    width: 300px;
+  }
+
   /* front page */
   header {
     margin: 8px auto;
@@ -265,21 +273,18 @@ h1 {
     width: 95%;
   }
   #start-menu {
-    max-width: 560px;
     width: 95%;
-    min-width: 320px;
+    min-width: 400px;
     height: auto;
   }
   #start-menu-container {
     flex-direction: column;
-    max-width: 530px;
-    min-width: 300px;
+    justify-content: center;
     width: 95%;
     height: 460px;
     margin: 10px auto 0 auto;
   }
   .top-scores {
-    max-width: 530px;
     min-width: 300px;
     width: 95%;
     height: auto;
@@ -292,8 +297,7 @@ h1 {
 
   /* game page */
   #game-player {
-    max-width: 560px;
-    width: 97%;
+    width: 98%;
     min-width: 430px;
     height: auto;
     border-radius: 10px;
@@ -301,29 +305,29 @@ h1 {
   .game-wrapper {
     flex-direction: column;
     align-items: center;
-    max-width: 530px;
-    min-width: 420px;
-    margin: 15px 0 10px 0;
+    margin: 8px;
   }
+
   .grid {
-    width: 420px;
+    width: 100%;
     border-radius: 0;
   }
   .cell {
-    width: 40px;
-    height: 40px;
-    margin: 1px;
+    flex: 0 0 9%;
+    box-sizing: border-box;
+    margin: 0.5%;
   }
   .aside{
-    width: 394px;
-    margin: 5px 0;
+    width: 90%;
     flex-direction: row;
+    margin: 10px auto;
   }
   .score-container {
     height: 30%;
   }
   .instructions-container {
     margin: 5px;
+    width: 252px;
   }
   #left-right-container div {
     margin: 0;
