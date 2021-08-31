@@ -29,7 +29,12 @@
           </div>
   
           
-          <form>
+          <section id="form">
+
+            <div class="form-field" id="name-wrapper">
+              <input type="text" maxlength="10" placeholder="Your name" id="name"></input>
+            </div>
+
             <div class="form-field" id="choose-character">
               <select id="character-select">
                 <option value="" disabled selected>Choose a character</option>
@@ -39,26 +44,22 @@
               </select>
             </div>
             
-              
-  
-            <div class="form-field" id="name-wrapper">
-              <input type="text" maxlength="10" placeholder="Your name">
-              <button id="start-button">Start Game</button>
-            </div>
-          </form>
+            <button id="start-button" disabled="disabled">Start Game</button>
+          
+          </section>
           
   
           
         </div>
         <div class="top-scores">
-          <img class="small-bubble" src='assets/images/enemies/bubble.png'>
-          <img class="large-bubble" src='assets/images/enemies/bubble.png'>
-          <div id='star-wrapper'>
+          <img class="small-bubble" src="assets/images/enemies/bubble.png">
+          <img class="large-bubble" src="assets/images/enemies/bubble.png">
+          <div id="star-wrapper">
             <p>Star Player</p>
-            <p><span class='topusername'>Player Name</span> with <span class='topscore'>000</span> points</p>
+            <p><span class="topusername">Player Name</span> with <span class="topscore">000</span> points</p>
           </div>
-          <img class="large-bubble" src='assets/images/enemies/bubble.png'>
-          <img class="small-bubble" src='assets/images/enemies/bubble.png'>
+          <img class="large-bubble" src="assets/images/enemies/bubble.png">
+          <img class="small-bubble" src="assets/images/enemies/bubble.png">
           <!-- user input name and user score at end of game -->
         </div>
 
@@ -76,21 +77,22 @@
   
           <section class="aside">
             <div class="score-container">
-              <p>score goes here</p>
-              <p>number of lives</p>
+              <p>User: <span id="current-user"></span></p>
+              <p>Score: <span id="point-container"></span></p>
+              <p>Lives: <span id="lives-container"></span></p>
             </div>
             <div class="instructions-container">
-              <div id='left-right-container'>
-                <div class='instruction-button' id='left-button'>  
+              <div id="left-right-container">
+                <div class="instruction-button" id="left-button">  
                   move left<br>
-                  <img src="assets/images/outline_arrow_back_black_24dp.png" alt="left arrow" id='left-arrow'>
+                  <img src="assets/images/outline_arrow_back_black_24dp.png" alt="left arrow" id="left-arrow">
                 </div>
-                <div class='instruction-button' id='right-button'>
+                <div class="instruction-button" id="right-button">
                   move right<br>
                   <img src="assets/images/outline_arrow_forward_black_24dp.png" alt="right arrow" id='right-arrow'>
                 </div>
               </div>
-              <div class='instruction-button' id='space-button'>space bar = pop</div>
+              <div class="instruction-button" id="space-button">space bar = pop</div>
             </div>
               
           </section>
@@ -101,7 +103,7 @@
         </div>
       </div>
     </main>
-
+    <footer>made by Kate Westbrook 2021</footer>
     
 
   </body>

@@ -90,7 +90,7 @@ h1 {
   margin: 10px auto;
 }
 
-#start-button {
+#start-button:enabled {
   padding: 10px;
   background-color: #ff00d9;
   color: white;
@@ -100,6 +100,19 @@ h1 {
   box-shadow:  3px 3px 5px rgba(0, 0, 0, 0.6);
   margin: 10px auto;
   font-size: 20px;
+
+}
+
+#start-button:disabled {
+  padding: 10px;
+  background-color: #cbcbcb;
+  color: white;
+  border: none;
+  width: 240px;
+  border-radius: 6px;
+  margin: 10px auto;
+  font-size: 20px;
+
 }
 
 #name-wrapper button:active {
@@ -132,6 +145,12 @@ h1 {
 .small-bubble {
   width: 50px;
   height: 50px;
+}
+
+footer {
+  font-size: 15px;
+  color: #564fd8;
+  margin-top: 10px;
 }
 
 .instructions-container {
@@ -184,7 +203,7 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  background-color:#564fd8e2;
+  background-color:#564fd8ac;
   border-radius: 10px;
 }
 
@@ -209,22 +228,22 @@ h1 {
   height: 300px;
 }
 
+.circle , .triangle , .square, .enemy, .charBullet, .enemyBullet {
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 
 .triangle {
   background-image: url('../assets/images/characters/triangle.png');
-  background-size: cover;
 }
 
 .circle {
   background-image: url('../assets/images/characters/circle.png');
-  background-size: cover;
 }
 
 .square {
   background-image: url('../assets/images/characters/square.png');
-  background-size: cover;
 }
-
 
 .enemy {
   background-image: url('../assets/images/enemies/bubble.png');
@@ -254,15 +273,7 @@ h1 {
   .instruction-button, #character-select, #name-wrapper input, #start-button {
     font-size: 22px;
   }
-  #character-select, #start-button {
-    width: 320px;
-  }
-  #character-select{
-    margin-top: 20px;
-  }
-  #name-wrapper input {
-    width: 300px;
-  }
+
 
   /* front page */
   header {
@@ -292,6 +303,13 @@ h1 {
   }
   .large-bubble {
     display: none;
+  }
+  #character-select, #start-button {
+    width: 320px;
+  }
+  #name-wrapper input {
+    width: 300px;
+    margin-top: 20px;
   }
 
 
