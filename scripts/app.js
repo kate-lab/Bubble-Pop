@@ -7,18 +7,22 @@ function init() {
   const startButton = document.querySelector('#start-button')
   const startCounter = document.querySelector('#start-count')
   
-
-
   // grid variables
   const width = 10
   const cells = []
   const cellCount = width * width
 
+  // grid enemy variables 
+  const stopPoint = (width * 9) + 9
+  const downLeftArray = [width,width * 3,width * 5,width * 7]
+  const downRightArray = [width - 1,(width * 3) - 1,(width * 5) - 1,(width * 7) - 1,(width * 9) - 1]
+  const rightArray = [0,1,2,20,21,22,40,41,42,60,61,62,80,81,82]
+  const leftArray = [17,18,19,37,38,39,57,58,59,77,78,79]
+
   //on page button variables
   const right = document.querySelector('#right-button')
   const left = document.querySelector('#left-button')
   const space = document.querySelector('#space-button')
-
 
   //score variables
   const scoreHolder = document.getElementById('point-container')
@@ -29,25 +33,21 @@ function init() {
   //user variables
   const inputUserName = document.getElementById('name')
   
-
-  //lives variable
+  //lives variables
   const livesHolder = document.getElementById('lives-container')
   let currentLives = 3 //change to let when you add takeLife() function
   livesHolder.innerText = currentLives
 
-
   // enemy variables
-
   const enemyClassName = 'enemy'
   let enemies = []
-
   const enemyStartingPosition = 0
-  let enemyCurrentPosition = enemyStartingPosition
-
   const enemiesArrayLength = parseInt(width * 0.7)
-
+  const enemyRightValue = enemies[enemies.length - 1]
+  const randomEnemy = enemies[Math.floor(Math.random() * enemies.length)]
+  
   //enemy bullet variables
-
+  const enemyBulletClassName = 'enemyBullet'
 
   //character variables
   let chosenCharClass = ''
@@ -79,8 +79,6 @@ function init() {
     }
   }
 
-
-
   //execution
 
   //storing user details
@@ -92,9 +90,6 @@ function init() {
     const currentUserName = localStorage.getItem('name')
     document.querySelector('#current-user').innerHTML = currentUserName
   }
-
-  
-
 
   //LAYOUT SET UP
 
@@ -112,11 +107,11 @@ function init() {
     addCharacter(charStartingPosition)
     
     //calling function to add enemies on grid and make it start moving after timeout delay
-    setTimeout(()=>{
+    const enemiesAction = setTimeout(()=>{
 
       // add starting Enemies
       
-      for (let cellIndex = enemyCurrentPosition; cellIndex < enemiesArrayLength; cellIndex++) {
+      for (let cellIndex = enemyStartingPosition; cellIndex < enemiesArrayLength; cellIndex++) {
         cells[cellIndex].classList.add(enemyClassName)
         enemies.push(cellIndex)
       }
@@ -125,16 +120,11 @@ function init() {
       console.log(cells)
       
       // autoMoveEnemy
-      setInterval(()=>{
-
-        const stopPoint = (width * 9) + 9
-        const downLeftArray = [width,width * 3,width * 5,width * 7]
-        const downRightArray = [width - 1,(width * 3) - 1,(width * 5) - 1,(width * 7) - 1,(width * 9) - 1]
-        const rightArray = [0,1,2,20,21,22,40,41,42,60,61,62,80,81,82]
-        const leftArray = [17,18,19,37,38,39,57,58,59,77,78,79]
+      const autoMoveEnemies = setInterval(()=>{
 
         const enemyRightValue = enemies[enemies.length - 1]
-
+        
+        //code to run whilst enemies have not reached the stop point at bottom of page
         if (rightArray.includes(enemies[0])) {
           moveEnemyRight()
           console.log(enemies)
@@ -155,17 +145,40 @@ function init() {
           cells.forEach((cell)=>{
             cell.classList.remove('enemy')
           })
-          //log final score to local storage with name - window alert?
-          clearInterval
+          clearTimeout(enemiesAction)
+          clearInterval(autoMoveEnemies)
+          gameOver()// why is it jumping straight to this?!
         }
         
-      },500)
 
-      let randomShootInterval = Math.floor(Math.random())
-      //enemy auto shoot
-      setinterval(()=>{
+        // //enemy auto shoot starts 0.5 seconds after enemies appear
+        // setTimeout(()=>{
+        //   // function to get random integer with min and max values (for enemy who will be shooting)
+        //   function getRandomInteger(min, max) {
+        //     return Math.floor(Math.random() * (max - min + 1) ) + min
+        //   }
+        //   //call function to shoot bullet at random intervals
+        //   setInterval(()=>{
+        //     // shootEnemyBullet()
+        //     console.log('enemy shoots')
+        //   }, getRandomInteger(1000, 2000))
+          
+        //   //function to shoot bullet from random enemy
+        //   function shootEnemyBullet(){
+        //     //variables that show position of bullet in cell below enemy
+        //     const enemyBulletStartingPosition = randomEnemy + 10
+        //     let enemyBulletCurrentPosition = enemyBulletStartingPosition
+        //     // function to add bullet in this place
+        //     addEnemyBullet(enemyBulletStartingPosition)
+        // //   }
+        // }, 500)
 
-      }, randomShootInterval)
+        
+          
+        
+        
+        
+      },100)
 
     }, 4000)
 
@@ -274,7 +287,7 @@ function init() {
     }
 
     function removeAllLives(){
-      currentLives = 0
+      livesHolder.innerText = 0
     }
 
     //function that shoots character bullet
@@ -313,7 +326,7 @@ function init() {
         // do i need to set a new else statement for when there are no enemies left?
       }, 100)
     }
-
+    
 
     // USER INPUT - GAMEPLAY
 
@@ -375,6 +388,22 @@ function init() {
       }  
       addCharacter(charCurrentPosition)
     }
+
+    // when char has 0 lives, display window alert with final score and offer option to play again
+    function gameOver(){
+      const finalScore = currentScore
+      //save finalScore to local storage with inputUserName
+      reloader()
+      function reloader(){
+        if (confirm(`Suds! You lost the game.\nYour score was ${finalScore}\nPlay again?`)){
+          window.location.reload()
+        }
+        return false
+      }
+      
+    }
+
+    
 
     //EVENT LISTENERS WHEN GRID IS INITIALISED
 

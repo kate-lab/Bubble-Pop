@@ -253,6 +253,10 @@ footer {
   background-image: url('../assets/images/char-bullets/bullet.png');
 }
 
+.enemyBullet {
+  background-image: url('../assets/images/enemy-bullet.png');
+}
+
 #start-count {
   color: #fff782;
   font-size: 200px;
