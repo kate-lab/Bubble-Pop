@@ -32,14 +32,14 @@ function init() {
 
   //lives variable
   const livesHolder = document.getElementById('lives-container')
-  const currentLives = 3 //change to let when you add takeLife() function
+  let currentLives = 3 //change to let when you add takeLife() function
   livesHolder.innerText = currentLives
 
 
   // enemy variables
 
   const enemyClassName = 'enemy'
-  const enemies = []
+  let enemies = []
 
   const enemyStartingPosition = 0
   let enemyCurrentPosition = enemyStartingPosition
@@ -114,12 +114,59 @@ function init() {
     //calling function to add enemies on grid and make it start moving after timeout delay
     setTimeout(()=>{
 
-      // addEnemies
-      for (let i = 0; i < enemiesArrayLength; i++) {
-        cells[i].classList.add(enemyClassName)
-      }
+      // add starting Enemies
       
-      //autoMoveEnemy
+      for (let cellIndex = enemyCurrentPosition; cellIndex < enemiesArrayLength; cellIndex++) {
+        cells[cellIndex].classList.add(enemyClassName)
+        enemies.push(cellIndex)
+      }
+
+      console.log(enemies)
+      console.log(cells)
+      
+      // autoMoveEnemy
+      setInterval(()=>{
+
+        const stopPoint = (width * 9) + 9
+        const downLeftArray = [width,width * 3,width * 5,width * 7]
+        const downRightArray = [width - 1,(width * 3) - 1,(width * 5) - 1,(width * 7) - 1,(width * 9) - 1]
+        const rightArray = [0,1,2,20,21,22,40,41,42,60,61,62,80,81,82]
+        const leftArray = [17,18,19,37,38,39,57,58,59,77,78,79]
+
+        const enemyRightValue = enemies[enemies.length - 1]
+
+        if (rightArray.includes(enemies[0])) {
+          moveEnemyRight()
+          console.log(enemies)
+        }
+        if (downRightArray.includes(enemyRightValue) || downLeftArray.includes(enemies[0])){
+          console.log(enemies)
+          moveEnemyDown()
+          console.log(enemies)
+        }
+        if (leftArray.includes(enemyRightValue)){
+          moveEnemyLeft()
+          console.log(enemies)
+        }
+        if (enemies.includes(stopPoint)){
+          console.log('you are dead!')
+          removeAllLives()
+          removeCharacter(charCurrentPosition)
+          cells.forEach((cell)=>{
+            cell.classList.remove('enemy')
+          })
+          //log final score to local storage with name - window alert?
+          clearInterval
+        }
+        
+      },500)
+
+      let randomShootInterval = Math.floor(Math.random())
+      //enemy auto shoot
+      setinterval(()=>{
+
+      }, randomShootInterval)
+
     }, 4000)
 
     //start countdown to gameplay
@@ -136,7 +183,67 @@ function init() {
       }
     }, 1000)
 
+    //add enemy
 
+    function addEnemy(positions){
+      cells[positions].classList.add(enemyClassName)
+    }
+    //remove enemy
+    function removeEnemy(position){
+      cells[position].classList.remove(enemyClassName)
+    }
+    // remove all current enemies
+
+    // add all current enemies
+
+    
+    // function to move whole enemies array 1 cell to right
+    function moveEnemyRight(){
+
+      //remove enemy classes from initial position - by removing all from entire grid
+      cells.forEach((cell)=>{
+        cell.classList.remove('enemy')
+      })
+      
+      //create new enemies array with values that are all forward 1 place
+      enemies = enemies.map(enemy => (enemy + 1))
+
+      //add enemy class name into positions defined by new enemies class array
+      for (let cellIndex = enemies[0]; cellIndex < enemies[0] + enemiesArrayLength; cellIndex++) {
+        cells[cellIndex].classList.add(enemyClassName)
+      }
+    }
+
+    function moveEnemyDown(){
+      //remove enemy classes from initial position - by removing all from entire grid
+      cells.forEach((cell)=>{
+        cell.classList.remove('enemy')
+      })
+      
+      //create new enemies array with values that are all down 10 places from current position
+      enemies = enemies.map(enemy => (enemy + 10))
+      
+      //add enemy class name into positions defined by new enemies class array
+      for (let cellIndex = enemies[0]; cellIndex < enemies[0] + enemiesArrayLength; cellIndex++) {
+        cells[cellIndex].classList.add(enemyClassName)
+      }
+    }
+
+    function moveEnemyLeft(){
+      //remove enemy classes from initial position - by removing all from entire grid
+      cells.forEach((cell)=>{
+        cell.classList.remove('enemy')
+      })
+      
+      //create new enemies array with values that are all - 1 places from current position
+      enemies = enemies.map(enemy => (enemy - 1))
+      
+      //add enemy class name into positions defined by new enemies class array
+      for (let cellIndex = enemies[0]; cellIndex < enemies[0] + enemiesArrayLength; cellIndex++) {
+        cells[cellIndex].classList.add(enemyClassName)
+        //enemies.push(cellIndex) - don't need this?
+      }
+    }
     //CHARACTER
 
 
@@ -162,6 +269,14 @@ function init() {
       scoreHolder.innerText = currentScore += 100
     }
 
+    function removeLife(){
+      livesHolder.innerText = currentLives -= 1
+    }
+
+    function removeAllLives(){
+      currentLives = 0
+    }
+
     //function that shoots character bullet
     function shootCharBullet(){
       //variables that show position of bullet in cell above char
@@ -175,65 +290,29 @@ function init() {
       // can I use? charBulletCurrentPosition.classList.contains(enemyClassName)
       //function to begin automatic movement of bullet & define outcomes if bullet hits enemy or bullet goes past grid
       const moveBullet = setInterval(()=>{
-        if (charBulletCurrentPosition === enemyCurrentPosition) { 
+        if (enemies.includes(charBulletCurrentPosition)) { 
           // if bullet and enemy are in same position, remove both!
           removeCharBullet(charBulletCurrentPosition)
-          removeEnemy(enemyCurrentPosition)
+          const currentEnemyIndex = charBulletCurrentPosition
+          enemies.splice(1, currentEnemyIndex)
           console.log('Popped!')
           addPoints()
           clearInterval(moveBullet)
-        } else if (charBulletCurrentPosition !== enemyCurrentPosition && charBulletCurrentPosition >= 10) { //if the bullet is not in the same position the enemy, move upwards
+        } else if (!enemies.includescharBulletCurrentPosition && charBulletCurrentPosition >= 10) { //if the bullet is not in the same position the enemy, move upwards
           removeCharBullet(charBulletCurrentPosition)
           charBulletCurrentPosition -= 10
           addCharBullet(charBulletCurrentPosition)
         } else { //if bullet gets to end of grid, remove and clear interval
           console.log('bullet wasted!')
           removeEnemy(charBulletCurrentPosition)
+          const currentEnemyIndex = charBulletCurrentPosition
+          enemies.splice(1, currentEnemyIndex)
           removeCharBullet(charBulletCurrentPosition)
           clearInterval(moveBullet)
         } 
         // do i need to set a new else statement for when there are no enemies left?
       }, 100)
     }
-
-
-    //add enemy
-
-    function addEnemy(positions){
-      cells[positions].classList.add(enemyClassName)
-    }
-    //remove enemy
-    function removeEnemy(position){
-      cells[position].classList.remove(enemyClassName)
-    }
-
-    // //auto move the enemy every second
-    // const autoMoveEnemy = setInterval(()=>{
-    //   if (enemyCurrentPosition % width !== width - 1){
-    //     moveEnemyRight
-    //   } else if (enemyCurrentPosition % width === width - 1){
-    //     moveEnemyDown
-    //   }
-    // }, 1000)
-    
-    // // function to move enemy 1 cell to right
-    // function moveEnemyRight(){
-    //   removeEnemy(enemyCurrentPosition)
-    //   enemyCurrentPosition++
-    //   addEnemy(enemyCurrentPosition)
-    // }
-
-    // function moveEnemyDown(){
-    //   removeEnemy(enemyCurrentPosition)
-    //   enemyCurrentPosition += 10
-    //   addEnemy(enemyCurrentPosition)
-    // }
-
-    // function moveEnemyLeft(){
-    //   removeEnemy(enemyCurrentPosition)
-    //   enemyCurrentPosition--
-    //   addEnemy(enemyCurrentPosition)
-    // }
 
 
     // USER INPUT - GAMEPLAY
