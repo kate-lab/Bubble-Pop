@@ -13,13 +13,11 @@ function init() {
   const cellCount = width * width
 
   // grid enemy variables 
-  const stopPoint = (width * 9) + 9
+  const stopPoint = (width * 9) + (width - 1)
   const downLeftArray = [width,width * 3,width * 5,width * 7]
   const downRightArray = [width - 1,(width * 3) - 1,(width * 5) - 1,(width * 7) - 1,(width * 9) - 1]
   const rightArray = [0,1,2,20,21,22,40,41,42,60,61,62,80,81,82]
   const leftArray = [17,18,19,37,38,39,57,58,59,77,78,79]
-  const bottomArray = [90,91,92,93,94,95,96,97,98,99]
-  const topArray = [0,1,2,3,4,5,6,7,8,9]
 
   //on page button variables
   const right = document.querySelector('#right-button')
@@ -39,6 +37,7 @@ function init() {
   const livesHolder = document.getElementById('lives-container')
   let currentLives = 3 //change to let when you add takeLife() function
   livesHolder.innerText = currentLives
+  
 
   // enemy variables
   const enemyClassName = 'enemy'
@@ -48,7 +47,6 @@ function init() {
   const enemyStartingPosition = 0
   const enemiesStartingArrayLength = parseInt(width * 0.7)
   let enemiesArrayLength = enemiesStartingArrayLength
-  // const enemyRightValue = enemies[enemies.length - 1]
   
   
   //enemy bullet variables
@@ -86,15 +84,15 @@ function init() {
 
   //execution
 
-  // //storing user details
+  //storing user details
 
-  // function storeUserDetails(){
-  //   //stores username
-  //   localStorage.setItem('name', inputUserName.value)
-  //   //adds user name to current-user span
-  //   const currentUserName = localStorage.getItem('name')
-  //   document.querySelector('#current-user').innerHTML = currentUserName
-  // }
+  function storeUserDetails(){
+    //stores username
+    localStorage.setItem('name', inputUserName.value)
+    //adds user name to current-user span
+    const currentUserName = localStorage.getItem('name')
+    document.querySelector('#current-user').innerHTML = currentUserName
+  }
 
   //LAYOUT SET UP
 
@@ -108,9 +106,10 @@ function init() {
       grid.appendChild(cell)
       cells.push(cell)
     }
+
     //calling function to add character on grid
     addCharacter(charStartingPosition)
-    
+
     //calling function to add enemies on grid and make it start moving after timeout delay
     const enemiesAction = setTimeout(()=>{
 
@@ -164,7 +163,7 @@ function init() {
         setInterval(()=>{
           shootEnemyBullet()
           console.log('enemy shoots')
-        }, getRandomInteger(900, 2000))
+        }, getRandomInteger(2000, 3000))
         
         //function to shoot bullet from random enemy
         function shootEnemyBullet(){
@@ -176,33 +175,24 @@ function init() {
           //variables that show position of bullet in cell below enemy
           const enemyBulletStartingPosition = randomEnemyPosition + 10
           let enemyBulletCurrentPosition = enemyBulletStartingPosition
-
+        
           // function to add bullet in this place
-          // addEnemyBullet(enemyBulletStartingPosition)
+          addEnemyBullet(enemyBulletStartingPosition)
+          const enemyBulletInterval = setInterval(()=>{
 
-          function moveEnemyBullet() {
-            if (enemyBulletCurrentPosition > 89){
-              return
-            } else {
-              removeEnemyBullet(enemyBulletCurrentPosition)
-              enemyBulletCurrentPosition += 10
-              addEnemyBullet(enemyBulletCurrentPosition)
-              console.log(enemyBulletCurrentPosition)
-            }
-          }
-          setInterval(moveEnemyBullet,200)
-          
-          if (enemyBulletCurrentPosition === charCurrentPosition) { // if bullet and char are in same position, remove a life!
-            console.log('ouch!')
-            removeEnemyBullet(charCurrentPosition)
-            removeLife()
-            return
-          } else if (enemyBulletCurrentPosition > 89){ //if bullet gets to end of grid, remove and clear interval
-            console.log('enemy missed!')
             removeEnemyBullet(enemyBulletCurrentPosition)
-            return
-          } 
-          // do i need to set a new else statement for when there are no enemies left?
+
+            if (cells[enemyBulletCurrentPosition + width]) {
+              enemyBulletCurrentPosition += width
+              addEnemyBullet(enemyBulletCurrentPosition)
+            } else {
+              clearInterval(enemyBulletInterval)
+            }
+
+            checkForCollision(enemyBulletCurrentPosition, chosenCharClass)
+
+          }, 200)
+
         }
 
       }, 100) // how long before enemies start shooting
@@ -223,6 +213,7 @@ function init() {
       }
     }, 1000)
 
+    
     //add enemy
     // function addEnemy(positions){
     //   cells[positions].classList.add(enemyClassName)
@@ -232,10 +223,6 @@ function init() {
     function removeEnemy(position){
       cells[position].classList.remove(enemyClassName)
     }
-    // remove all current enemies
-
-    // add all current enemies
-
     
     // function to move whole enemies array 1 cell to right
     function moveEnemyRight(){
@@ -292,13 +279,13 @@ function init() {
       cells[cellPosition].classList.add(enemyBulletClassName)
     }
     //remove enemy's bullet (use this when running setinterval to auto move bullet)
-    function removeEnemyBullet(position){
-      cells[position].classList.remove(enemyBulletClassName)
+    function removeEnemyBullet(cellPosition){
+      cells[cellPosition].classList.remove(enemyBulletClassName)
     }
 
-    function clearBottomRowBullet(){
-      cells[bottomArray].classList.removeEnemyBullet(enemyBulletClassName)
-    }
+    // function clearBottomRowBullet(){
+    //   cells[bottomArray].classList.removeEnemyBullet(enemyBulletClassName)
+    // }
 
     //CHARACTER
 
@@ -322,11 +309,17 @@ function init() {
     }
 
     function addPoints(){
-      scoreHolder.innerText = currentScore += 100
+      currentScore += 100
+      scoreHolder.innerText = currentScore
     }
 
     function removeLife(){
-      livesHolder.innerText = currentLives -= 1
+      currentLives -= 1
+      console.log('lives', currentLives)
+      livesHolder.innerText = currentLives
+      if (currentLives < 1){
+        gameOver()
+      }
     }
 
     function removeAllLives(){
@@ -343,38 +336,35 @@ function init() {
       // function to add bullet in this place
       addCharBullet(charBulletStartingPosition)
 
-      //function to begin automatic movement of bullet & define outcomes if bullet hits enemy or bullet goes past grid
-      function moveCharBullet() {
-        if (enemies.includes(charBulletCurrentPosition) || topArray.includes(charBulletCurrentPosition)){
-          return
-        } else {
-          removeCharBullet(charBulletCurrentPosition)
-          charBulletCurrentPosition -= 10
-          addCharBullet(charBulletCurrentPosition)
-          return charBulletCurrentPosition
-        }
-      }
-      setInterval(moveCharBullet,200)
-      
-      if (enemies.includes(charBulletCurrentPosition)) { // if bullet and enemy are in same position, remove both!
-        const currentEnemyValue = charBulletCurrentPosition
-        const targetEnemyIndex = enemies.indexof(currentEnemyValue)
-        console.log(cells)
+      const characterBulletInterval = setInterval(()=>{
+
         removeCharBullet(charBulletCurrentPosition)
-        console.log(cells)
-        enemies = enemies.splice(targetEnemyIndex, 1)
-        console.log(cells)
-        console.log(enemies)
+
+        if (cells[charBulletCurrentPosition - width]) {
+          charBulletCurrentPosition -= width
+          addCharBullet(charBulletCurrentPosition)
+        } else {
+          clearInterval(characterBulletInterval)
+        }
+
+        checkForCharBulletCollision(charBulletCurrentPosition, enemyClassName)
+
+      }, 200)
+      
+    }
+
+    function checkForCharBulletCollision(position, className){
+      if (cells[position].classList.contains(className)) { 
+        enemies.splice(1, position, '')
         console.log('Popped!')
         addPoints()
-        
-        return
-      } else if (topArray.includes(charBulletCurrentPosition)) { //if bullet gets to end of grid, remove and clear interval
-        console.log('bullet wasted!')
-        removeCharBullet(charBulletCurrentPosition)
-        return
       }
-      // do i need to set a new else statement for when there are no enemies left?
+    }
+
+    function checkForCollision(position, className){
+      if (cells[position].classList.contains(className)) { 
+        removeLife()
+      }
     }
     
 
@@ -450,10 +440,7 @@ function init() {
         }
         return false
       }
-      
     }
-
-    
 
     //EVENT LISTENERS WHEN GRID IS INITIALISED
 
@@ -465,21 +452,12 @@ function init() {
     document.addEventListener('click', handleRightClick)
     document.addEventListener('click', handleSpaceClick)
 
-
   }
 
   //EVENT LISTENERS AFTER INIT
-
-  //changes character picture on change of selector options
-  selectCharMenu.addEventListener('change', updateChar)
-
-  // //saves username on startbutton click
-  // startButton.addEventListener('click', storeUserDetails)
-
-  //creates grid and adds character
-  startButton.addEventListener('click', createGrid)
-
-
+  selectCharMenu.addEventListener('change', updateChar) //changes character picture on change of selector options
+  startButton.addEventListener('click', storeUserDetails) //saves username on startbutton click
+  startButton.addEventListener('click', createGrid) //creates grid and adds character
 
 }
 window.addEventListener('DOMContentLoaded', init)
