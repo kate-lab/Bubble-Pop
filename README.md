@@ -30,7 +30,7 @@ This game (loosely based on the classic Space Invaders) is a bubble popping game
 First of all I wireframed out my project, looking at all of the HTML I would need for both a start page with character selecter and the game grid.
 ![space invaders plan](/plan/Wireframe.png)
 
-I then put together an overview of how I might develop the core features of this game using javascript. Some of these methods were used in the final game, but some of these features I modified or found alternative and better solutions for.
+I then put together an overview of how I might develop the core features of this game using javascript. Some of these methods were used in the final game, but some of these features I modified or found alternative and better solutions for. Some of the "would like" features took a back seat to the minimum viable product, but are TBC as I continue working on the game!
 
 [Complete planning document for the project](plan/Space-invaders-plan.md)
 
