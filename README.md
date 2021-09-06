@@ -1,7 +1,7 @@
 ![bubble pop](assets/images/bubble-header.png)
 
 # Bubble Pop game
-This game (loosely based on the classic Space Invaders) is a bubble popping game built using Javascript, HTML and CSS. It was my first full build project during the General Assembly Software Engineering Immersive bootcamp.
+This game (loosely based on the classic Space Invaders) is a bubble popping game built using Javascript, HTML and CSS. It was my first full build project during the General Assembly Software Engineering Immersive bootcamp. This was a great chance to really put the skills I have learned in my first three weeks of coding to use, looking at how to plan and build a working and aesthetically pleasing game.
 
 ## Tech Stack
 
