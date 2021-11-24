@@ -75,3 +75,7 @@ If I were to look at this project again, I would probably start from scratch, as
 I still have a bug within the game that the enemy doesn’t disappear permanently - it reappears on automatic movement. My next step here will be to look at the logic of how the array can retain a “missing” enemy or if I need to reconsider the logic of how I create the enemies altogether.
 
 I have started building in the top score save to local storage feature, so this is also something I am continuing to build upon.
+
+## Demo
+
+To play the game, visit Bubble Pop on [GitHub Pages](https://kate-lab.github.io/Bubble-Pop/).
