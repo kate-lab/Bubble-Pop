@@ -33,9 +33,48 @@ Once the player has destroyed a wave of aliens, the game starts again. The aim i
 <br>![triangle character](assets/images/characters/triangle.png) ![circle character](assets/images/characters/circle.png) ![square character](assets/images/characters/square.png)
 
 - character selector menu - chosen character is playable in-game
+```
+chosenCharClass = event.target.value
+    if (chosenCharClass === 'triangle'){
+      document.getElementById('character-img').src = 'assets/images/characters/triangle.png'
+    } else if (chosenCharClass === 'circle'){
+      document.getElementById('character-img').src = 'assets/images/characters/circle.png'
+    } else if (chosenCharClass === 'square'){
+      document.getElementById('character-img').src = 'assets/images/characters/square.png'
+    }
+```
 - count down to play with a set timeout
+```
+    const startCount = startCounter.innerHTML = 3
+    setInterval(()=>{
+      if (startCounter.innerHTML > 1){
+        startCounter.innerHTML--
+      } else {
+        startCounter.innerHTML = 'pop!'
+        setTimeout(()=>{
+          startCounter.style.display = 'none'
+          clearInterval(startCount)
+        }, 1000)
+      }
+    }, 1000)
+```
 - use of keyboard event listeners OR on-screen button clicks to move character and shoot
 - score accumulator and lives decrementer
+```
+function addPoints(){
+      currentScore += 100
+      scoreHolder.innerText = currentScore
+    }
+
+    function removeLife(){
+      currentLives -= 1
+      console.log('lives', currentLives)
+      livesHolder.innerText = currentLives
+      if (currentLives < 1){
+        gameOver()
+      }
+    }
+```
 - collision detector to add score (if on enemy) or remove lives (if on character)
 
   
@@ -57,6 +96,15 @@ As well as using this plan for my game, I also mapped out some of the core algor
 The main bulk of this project was heavily focussed on working out the logic of how a game like this could work. I started by building in the framework of the user journey, beginning with the start page, with a form and button to start. This would eventually include a selectable character and a name input that I planned to use for local storage high scores.
 
 My next step was to build a numbered grid that forms the basis of all movement within the game. I then began to add the user - with movement dictated by key-presses and on-screen buttons (for mobile), and how the “bullet” would shoot (ie. initially on key-press and then automatically upwards until the end of the page). I also had to work out how the enemies would appear on screen, and move automatically across and then down, whilst also releasing random bullets that move automatically downwards. I spent a lot of time defining which grid squares were the edges of the board, and then how each different moving element would respond when it hit that square.
+
+```
+  // grid enemy variables 
+  const stopPoint = (width * 9) + (width - 1)
+  const downLeftArray = [width,width * 3,width * 5,width * 7]
+  const downRightArray = [width - 1,(width * 3) - 1,(width * 5) - 1,(width * 7) - 1,(width * 9) - 1]
+  const rightArray = [0,1,2,20,21,22,40,41,42,60,61,62,80,81,82]
+  const leftArray = [17,18,19,37,38,39,57,58,59,77,78,79]
+```
 
 During one of the days of the project, I focussed on the CSS and styling of the game, building in character design and a nice logo and colour scheme. This was an important element of the game and really built a characterful and engaging game. I was very pleased with the final result of my project, despite some slightly unfinished elements.
 
